@@ -14,6 +14,7 @@
  <author email="ivilvil@epsg.upv.es">Iván, Abidán</author>
  <buildtool_depend>ament_cmake</buildtool_depend>
  <exec_depend>petsitter_world_01</exec_depend>
+ <exec_depend>petsitter_slam_01</exec_depend>
  <export>
  	<build_type>ament_cmake</build_type>
  </export>
