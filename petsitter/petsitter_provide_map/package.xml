@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>petsitter_slam_01</name>
+  <name>petsitter_provide_map</name>
   <version>1.0.0</version>
-  <description>ROS2 SLAM package for world_01</description>
-  <maintainer email="ivilvil@epsg.upv.es">Iván, Abidán</maintainer>
+  <description>ROS2 package to fire up map_server and load our map.</description>
+  <maintainer email="abricla@epsg.upv.es">Abidán Brito, Iván Villanueva</maintainer>
   <license>MIT</license>
 
   <test_depend>ament_copyright</test_depend>

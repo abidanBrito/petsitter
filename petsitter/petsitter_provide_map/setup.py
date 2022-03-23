@@ -2,11 +2,11 @@ from setuptools import setup
 import os #incluir
 from glob import glob #incluir
 
-package_name = 'provide_map'
+package_name = 'petsitter_provide_map'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -19,10 +19,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='asun',
-    maintainer_email='asun@todo.todo',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Abidán Brito, Iván Villanueva',
+    maintainer_email='abricla@epsg.upv.es',
+    description='ROS2 package to fire up map_server and load our map.',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

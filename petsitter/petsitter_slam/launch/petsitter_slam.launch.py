@@ -10,12 +10,12 @@ from launch.actions import DeclareLaunchArgument
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    rviz_config_dir = os.path.join(get_package_share_directory('petsitter_slam_01'), 'rviz', 'my_slam.rviz')
+    rviz_config_dir = os.path.join(get_package_share_directory('petsitter_slam'), 'rviz', 'slam_config.rviz')
 
     return LaunchDescription([
         DeclareLaunchArgument(
             'use_sim_time',
-            default_value='true',
+            default_value='false',
             description='Use simulation (Gazebo) clock if true'),
 
         #SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM','1'),
@@ -25,20 +25,10 @@ def generate_launch_description():
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
             arguments=[
-                '-configuration_directory', get_package_share_directory('petsitter_slam_01') + '/config',
-                '-configuration_basename','my_slam.lua'
+                '-configuration_directory', get_package_share_directory('petsitter_slam') + '/config',
+                '-configuration_basename','petsitter_slam.lua'
             ],
-        ),
-        
-        Node(
-            package='rviz2',
-            node_executable='rviz2',
-            node_name='rviz2',
-            arguments=['-d', rviz_config_dir],
-            parameters=[{'use_sim_time': True}],
-            output='screen'
-            ),
-            
+        ),          
         Node(
             package='cartographer_ros',
             executable='occupancy_grid_node',
@@ -46,4 +36,12 @@ def generate_launch_description():
             parameters=[{'use_sim_time': use_sim_time}],
             arguments = ['-resolution','0.05','-publish_period_sec','1.0']
         ),
+        Node(
+        package='rviz2',
+        node_executable='rviz2',
+        node_name='rviz2',
+        output='screen',
+        parameters=[{'use_sim_time': True}],
+        arguments=['-d', rviz_config_dir]
+        )
     ]) 

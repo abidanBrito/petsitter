@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>provide_map</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="ivandiscobolo@gmail.com">ivan</maintainer>
-  <license>TODO: License declaration</license>
+  <name>petsitter_slam</name>
+  <version>1.0.0</version>
+  <description>ROS2 SLAM package for Gazebo test world.</description>
+  <maintainer email="ivilvil@epsg.upv.es">Iván Villanueva, Abidán Brito</maintainer>
+  <license>MIT</license>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

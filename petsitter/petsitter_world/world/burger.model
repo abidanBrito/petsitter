@@ -46,7 +46,7 @@
     <model name="petsitter_world">
       <static>1</static>
       <include>
-        <uri>model://petsitter_world_01</uri>
+        <uri>model://petsitter_world</uri>
       </include>
     </model>
      
