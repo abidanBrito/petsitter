@@ -3,18 +3,19 @@
 <package format="3">
  <name>petsitter</name>
  <version>1.0.0</version>
- <description>
- ROS 2 packages for petSitter
- </description>
- <maintainer email="ivilvil@epsg.upv.es">Iván, Abidán</maintainer>
+ <description>ROS 2 packages for petSitter.</description>
+ <maintainer email="abricla@epsg.upv.es">Abidán Brito, Iván Villanueva</maintainer>
  <license>MIT</license>
  <url type="website">http://abricla.upv.edu.es</url>
  <url type="repository">https://github.com/abidanBrito/petsitter-ros2</url>
- <url type="bugtracker">https://github.com/abidanBrito/petsitter-ros2</url>
- <author email="ivilvil@epsg.upv.es">Iván, Abidán</author>
+ <url type="bugtracker">https://github.com/abidanBrito/petsitter-ros2/issues</url>
+ <author email="abricla@epsg.upv.es">Abidán Brito, Iván Villanueva</author>
  <buildtool_depend>ament_cmake</buildtool_depend>
- <exec_depend>petsitter_world_01</exec_depend>
- <exec_depend>petsitter_slam_01</exec_depend>
+
+ <exec_depend>petsitter_world</exec_depend>
+ <exec_depend>petsitter_slam</exec_depend>
+ <exec_depend>petsitter_provide_map</exec_depend>
+
  <export>
  	<build_type>ament_cmake</build_type>
  </export>

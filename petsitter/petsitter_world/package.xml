@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>petsitter_world_01</name>
+  <name>petsitter_world</name>
   <version>1.0.0</version>
-  <description>ROS2 package for test world.</description>
-  <maintainer email="ivilvil@epsg.upv.es">Iván, Abidán</maintainer>
+  <description>ROS2 package for Gazebo test world.</description>
+  <maintainer email="ivilvil@epsg.upv.es">Iván Villanueva, Abidán Brito</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
@@ -14,6 +14,7 @@
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>tf2</depend>
+
   <exec_depend>turtlebot3_description</exec_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

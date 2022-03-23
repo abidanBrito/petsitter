@@ -2,11 +2,11 @@ from setuptools import setup
 import os #incluir
 from glob import glob #incluir
 
-package_name = 'petsitter_slam_01'
+package_name = 'petsitter_slam'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -21,10 +21,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='ivilvil@epsg.upv.es',
-    maintainer_email='ivilvil@epsg.upv.es',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Abidán Brito, Iván Villanueva',
+    maintainer_email='abricla@epsg.upv.es',
+    description='ROS2 SLAM package for Gazebo test world.',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
