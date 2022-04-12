@@ -1,0 +1,8 @@
+#goal geometry_msgs/Pose
+int32 pose #posicion a la que tiene que moverse el robot
+---
+#result
+string status #estado final de la accion
+---
+#feedback
+string feedback #estado actual del robot
