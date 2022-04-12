@@ -1,0 +1,121 @@
+body {
+    background: #FBF8F1;
+    font-family: 'Secular One';
+    font-size: 18px;
+    color: #000;
+}
+
+.btn {
+    background: #54BAB9;
+    border-radius: 25px; 
+}
+
+.btn:hover {
+    background: #306d6d;
+}
+
+/* HEADER -------------------------------- */
+
+.header {
+    background: #292929;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.logo {
+    width: 150px;
+    color: #fff;
+    font-family: 'Sansita Swashed';
+}
+
+/* CONTENIDO ----------------------------- */
+
+/* Mapa ----------------------------- */
+
+.control {
+    width: 100%; 
+    padding: 20px;
+}
+
+.map {
+    height: 75vh;
+    background: url(../imgs/mapa-provisional.jpg);
+    background-size: cover;
+}
+
+.map h1 {
+    color: #fff;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Controles ----------------------------- */
+
+.control-robot {
+    height: 75vh;
+}
+
+.directions {
+    border: none;
+    border-radius: 25px;
+    height: 80%;
+}
+
+.directions.forward img {
+    transform: rotate(-90deg);
+}
+
+.directions.right img {
+    transform: rotate(0deg);
+}
+
+.directions.left img {
+    transform: rotate(-180deg);
+}
+
+.directions.backward img {
+    transform: rotate(90deg);
+}
+
+.btn-stop {
+    background: #54BAB9;
+    border: none;
+    font-size: 22px;
+    width: 120px;
+}
+
+.btn-stop:hover {
+    background: #306d6d;
+}
+
+.btn-connection {
+    background: #54BAB9;
+    border: none;
+    font-size: 22px;
+    width: 180px;
+}
+
+.btn-connection:hover {
+    background: #6d3044;
+}
+
+/* FOOTER -------------------------------- */
+
+footer {
+    padding: 10px;
+}
+
+.social-media .sm-icons {
+    width: 25%;
+}
+
+.social-media a img {
+    width: 40px; 
+}
+
+.upv a img {
+    width: 180px;
+}
