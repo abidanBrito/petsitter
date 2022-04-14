@@ -3,11 +3,11 @@ from glob import glob
 from setuptools import setup
 
 
-package_name = 'my_nav2_system'
+package_name = 'petsitter_nav2_system'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -19,22 +19,19 @@ setup(
         (os.path.join('share', package_name, 'config'), glob('config/*.rviz')),
         (os.path.join('share', package_name, 'config'), glob('config/*.xml')),
         (os.path.join('share', package_name, 'config'), glob('config/*.model'))
-        #(os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),#se lanza desde el rviz
 
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='ruben',
-    maintainer_email='ruben@ruben-VirtualBox',
+    maintainer='Abidán Brito',
+    maintainer_email='abidan.brito@gmail.com',
     description='TODO: Package description',
-    license='TODO: License declaration',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'initial_pose_pub = my_nav2_system.initial_pose_pub:main',
-            'load_map = my_nav2_system.load_map:main',
-            'nav_to_pose = my_nav2_system.nav_to_pose:main',
-            'go_to_pose = my_nav2_system.go_to_pose:main'
+            'initial_pose_pub = petsitter_nav2_system.initial_pose_pub:main',
+            'nav_to_pose = petsitter_nav2_system.nav_to_pose:main',
         ],
     },
 )
