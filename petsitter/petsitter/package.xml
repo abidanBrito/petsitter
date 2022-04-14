@@ -15,6 +15,7 @@
  <exec_depend>petsitter_world</exec_depend>
  <exec_depend>petsitter_slam</exec_depend>
  <exec_depend>petsitter_provide_map</exec_depend>
+ <exec_depend>petsitter_nav2_system</exec_depend>
 
  <export>
  	<build_type>ament_cmake</build_type>
