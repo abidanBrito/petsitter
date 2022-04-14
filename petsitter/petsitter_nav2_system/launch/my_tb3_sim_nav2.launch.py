@@ -19,7 +19,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
@@ -30,7 +30,7 @@ def generate_launch_description():
     # Get the launch directory
     bringup_dir = get_package_share_directory('nav2_bringup')
     launch_dir = os.path.join(bringup_dir, 'launch')
-    project_dir = get_package_share_directory('my_nav2_system')
+    project_dir = get_package_share_directory('petsitter_nav2_system')
     turtlebot3_dir = get_package_share_directory('turtlebot3_gazebo')
     burger_dir = get_package_share_directory('turtlebot3_description')
     
@@ -81,7 +81,7 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(project_dir, 'config', 'turtlebot3_world.yaml'),#cambiar nombre para cambiar de mapa
+        default_value=os.path.join(project_dir, 'config', 'my_map.yaml'),
         description='Full path to map file to load')
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
@@ -130,10 +130,22 @@ def generate_launch_description():
 
     declare_world_cmd = DeclareLaunchArgument(
         'world',
-        default_value= os.path.join(get_package_share_directory('turtlebot3_gazebo'),'worlds/turtlebot3_worlds/burger.model'),
-        description='Full path to world model file to load')
+        default_value=os.path.join(get_package_share_directory('petsitter_world'),'world/burger.model'),
+        description='Full path to world model file to load')    
 
     # Specify the actions
+    # Export GAZEBO_MODEL_PATH
+    models_path = os.path.join(get_package_share_directory('petsitter_world'), 'models')
+
+    if 'GAZEBO_MODEL_PATH' in os.environ:
+        gazebo_model_path = os.environ['GAZEBO_MODEL_PATH'] + ':' + models_path
+    else:
+        gazebo_model_path = models_path
+
+    export_gazebo_model_path_env = SetEnvironmentVariable(
+        name = 'GAZEBO_MODEL_PATH', 
+        value = gazebo_model_path)
+
     start_gazebo_server_cmd = ExecuteProcess(
         condition=IfCondition(use_simulator),
         cmd=['gzserver', '-s', 'libgazebo_ros_init.so', world],
@@ -176,10 +188,17 @@ def generate_launch_description():
                           'default_bt_xml_filename': default_bt_xml_filename,
                           'autostart': autostart}.items())
 
+    initial_pose_script = 'initial_pose_pub'
+    initial_pose_pub_cmd = ExecuteProcess(
+        condition=IfCondition(use_simulator),
+        cmd=['ros2 run' + ' ' + project_dir + ' ' + initial_pose_script],
+        cwd=[launch_dir], output='screen')
+
     # Create the launch description and populate
     ld = LaunchDescription()
 
     # Declare the launch options
+    ld.add_action(export_gazebo_model_path_env)
     ld.add_action(declare_namespace_cmd)
     ld.add_action(declare_use_namespace_cmd)
     ld.add_action(declare_slam_cmd)
@@ -204,5 +223,6 @@ def generate_launch_description():
     ld.add_action(start_robot_state_publisher_cmd)
     ld.add_action(rviz_cmd)
     ld.add_action(bringup_cmd)
+    ld.add_action(initial_pose_pub_cmd)
 
     return ld
