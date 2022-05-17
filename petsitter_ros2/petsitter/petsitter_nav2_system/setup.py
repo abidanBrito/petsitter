@@ -33,6 +33,8 @@ setup(
         'console_scripts': [
             'initial_pose_pub = petsitter_nav2_system.initial_pose_pub:main',
             'nav_to_pose = petsitter_nav2_system.nav_to_pose:main',
+            'nav_client = petsitter_nav2_system.nav_client:main', 
+            'send_pose_client = petsitter_nav2_system.send_pose_client:main' 
         ],
     },
 )

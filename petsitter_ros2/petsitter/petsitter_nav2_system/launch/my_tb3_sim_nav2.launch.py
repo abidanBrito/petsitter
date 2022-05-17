@@ -31,7 +31,7 @@ def generate_launch_description():
     bringup_dir = get_package_share_directory('nav2_bringup')
     launch_dir = os.path.join(bringup_dir, 'launch')
     project_dir = get_package_share_directory('petsitter_nav2_system')
-    turtlebot3_dir = get_package_share_directory('turtlebot3_gazebo')
+    turtlebot3_dir = get_package_share_directory('petsitter_world')
     burger_dir = get_package_share_directory('turtlebot3_description')
     
     # Create the launch configuration variables
