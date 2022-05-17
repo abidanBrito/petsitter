@@ -235,7 +235,7 @@ global_costmap:
 map_server:
   ros__parameters:
     use_sim_time: True
-    yaml_filename: "my_map.yaml"
+    yaml_filename: "map_sim_env.yaml"
 
 map_saver:
   ros__parameters:

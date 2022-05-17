@@ -2,7 +2,7 @@ from setuptools import setup
 import os #incluir
 from glob import glob #incluir
 
-package_name = 'my_first_service'
+package_name = 'petsitter_my_first_service'
 
 setup(
     name=package_name,
@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'movement_server = my_first_service.movement_server:main' #incluir
+            'movement_server = petsitter_my_first_service.movement_server:main' #incluir
         ],
     },
 )
