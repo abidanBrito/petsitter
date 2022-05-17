@@ -39,8 +39,9 @@ endif()
 # Añadir la siguiente funcion
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Distvel.msg"
-  "srv/MyMoveMsg.srv"  #incluir esta linea
-  "action/Move.action" #incluir
-  "action/Rosweb.action" #incluir
+  "srv/MyMoveMsg.srv"
+  "srv/ScanMsg.srv"
+  "action/Move.action"
+  "action/Rosweb.action"
 )
 ament_package()
