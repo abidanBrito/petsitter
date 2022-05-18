@@ -1,0 +1,154 @@
+body {
+    background: #FBF8F1;
+    font-family: 'Secular One';
+    font-size: 18px;
+    color: #000;
+}
+
+/* HEADER -------------------------------- */
+
+.header {
+    background: #292929;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.logo {
+    width: 150px;
+    color: #fff;
+    font-family: 'Sansita Swashed';
+}
+
+/* CONTENIDO REGISTRO ----------------------------- */
+
+.lat-top {
+    height: 50vh;
+}
+
+.lat-bottom {
+    height: 20vh;
+}
+
+.lat-top img {
+    width: 40%;
+    transform: rotate(-30deg);
+}
+
+.lat-bottom img {
+    width: 40%;
+    transform: rotate(30deg);
+}
+
+.content {
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 10%;
+}
+
+form {
+    height: 70vh;
+    margin-top: -10%;
+}
+
+form .form-group {
+    width: 80%;
+}
+
+.container-fluid input {
+    background: rgba(0,0,0,0);
+    border: none;
+    border-bottom: 4px solid #54BAB9;
+}
+
+.register-container {
+    width: 100%;
+}
+
+.register-btn {
+    background: #54BAB9;
+    color: #fff;
+    width: 80%;
+    border: none;
+    border-radius: 25px;
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.register-btn:hover {
+    background: #306d6d;
+    color: #FBF8F1;
+}
+
+.register {
+    color: #54BAB9;
+}
+
+.register:hover {
+    color: #306d6d;
+}
+
+/* mensaje registro */
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+/* FOOTER -------------------------------- */
+
+footer {
+    padding: 10px;
+}
+
+.social-media .sm-icons {
+    width: 25%;
+}
+
+.social-media a img {
+    width: 40px; 
+}
+
+.upv a img {
+    width: 180px;
+}
