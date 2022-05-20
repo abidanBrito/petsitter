@@ -19,6 +19,7 @@
  <exec_depend>petsitter_nav2_system</exec_depend>
  <exec_depend>petsitter_custom_interface</exec_depend>
  <exec_depend>petsitter_my_first_service</exec_depend>
+ <exec_depend>petsitter_capture_image</exec_depend>
 
  <export>
  	<build_type>ament_cmake</build_type>
