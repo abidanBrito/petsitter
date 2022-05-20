@@ -68,6 +68,11 @@ form .form-group {
     width: 100%;
 }
 
+.message-box {
+    color: #AA0000;
+    font-size: 14px;
+}
+
 .login-btn {
     background: #54BAB9;
     color: #fff;

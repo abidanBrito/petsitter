@@ -1,16 +1,33 @@
+function actualizar(){
+  var tiempo = new Date()
+  var rnd =tiempo.getTime()
+  var imagen = document.getElementById('my_image')
+  imagen.src = 'imgs/Imagen_camara.jpg?'+rnd
+  console.log("Actualizando la imagen")
+  }
+let x = setInterval(actualizar(), 100) // 1000 = 1 segundo
+var conectado = false
 document.addEventListener('DOMContentLoaded', event => {
-  document.getElementById("btn_con").addEventListener("click", connect)
-  document.getElementById("btn_dis").addEventListener("click", disconnect)
-  //document.getElementById("btn_move").addEventListener("click", move)
-  //document.getElementById("btn_turn").addEventListener("click", turn)
-  //document.getElementById("btn_stop").addEventListener("click", stop)
-  document.getElementById("btn_con").addEventListener("click", subscribe)
+  if(document.getElementById("btn_dis")){
+    document.getElementById("btn_dis").addEventListener("click", connect)
+    document.getElementById("btn_dis").addEventListener("click", subscribe)
+    
+  } else if(document.getElementById("btn_con")){
+    document.getElementById("btn_dis").removeEventListener("click", connect)
+    document.getElementById("btn_con").addEventListener("click", disconnect)
+  }
+
+ 
+
+  //setInterval(actualizar(), 100) // 1000 = 1 segundo
 
   document.getElementById("btn_forward").addEventListener("click", () => {call_service("delante")})
   document.getElementById("btn_backward").addEventListener("click", () => {call_service("atras")})
   document.getElementById("btn_left").addEventListener("click", () => {call_service("izquierda")})
   document.getElementById("btn_right").addEventListener("click", () => {call_service("derecha")})
   document.getElementById("btn_stop").addEventListener("click", () => {call_service("parar")})
+  document.getElementById("comedero").addEventListener("click", send_pose_service_cuenco)
+  document.getElementById("carga").addEventListener("click", send_pose_service_carga)
 
   let data = {
     // ros connection
@@ -33,6 +50,7 @@ document.addEventListener('DOMContentLoaded', event => {
     data.ros.on("connection", () => {
       data.connected = true
       console.log("Conexion con ROSBridge correcta")
+      conectado = true
     })
     data.ros.on("error", (error) => {
       console.log("Se ha producido algun error mientras se intentaba realizar la conexion")
@@ -48,6 +66,7 @@ document.addEventListener('DOMContentLoaded', event => {
     data.ros.close()
     data.connected = false
     console.log('Clic en botón de desconexión')
+    conectado = false
   }
 
   function move() {
@@ -130,6 +149,58 @@ document.addEventListener('DOMContentLoaded', event => {
   
     let request = new ROSLIB.ServiceRequest({
         move: valor
+    })
+  
+    service.callService(request, (result) => {
+        data.service_busy = false
+        data.service_response = JSON.stringify(result)
+    }, (error) => {
+        data.service_busy = false
+        console.error(error)
+    }) 
+  }
+
+  function send_pose_service_carga(){
+    data.service_busy = true
+    data.service_response = ''	
+  
+    //definimos los datos del servicio
+    let service = new ROSLIB.Service({
+        ros: data.ros,
+        name: '/send_pose',
+        serviceType: 'custom_interface/srv/NavMessage'
+    })
+  
+    let request = new ROSLIB.ServiceRequest({
+        x: 6.12,
+        y: -0.2
+      
+    })
+  
+    service.callService(request, (result) => {
+        data.service_busy = false
+        data.service_response = JSON.stringify(result)
+    }, (error) => {
+        data.service_busy = false
+        console.error(error)
+    }) 
+  }
+
+  function send_pose_service_cuenco(){
+    data.service_busy = true
+    data.service_response = ''	
+  
+    //definimos los datos del servicio
+    let service = new ROSLIB.Service({
+        ros: data.ros,
+        name: '/send_pose',
+        serviceType: 'custom_interface/srv/NavMessage'
+    })
+  
+    let request = new ROSLIB.ServiceRequest({
+        x: 6,
+        y: -6.1
+      
     })
   
     service.callService(request, (result) => {

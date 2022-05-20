@@ -44,6 +44,12 @@ body {
     color: #fff;
 }
 
+@media only screen and (min-width: 1000px) {
+    .btn-login {
+        margin-left: 20px;
+    }
+}
+
 /* PRINCIPAL ----------------------------- */
 
 .main {
@@ -73,6 +79,7 @@ body {
     font-size: 22px;
     width: 30%;
     margin-top: 2.5%;
+    min-width: 150px;
 }
 
 .btn-contact:hover {
@@ -120,6 +127,18 @@ body {
 
 .service img {
     margin-bottom: 20px;
+    min-width: 50px;
+}
+
+@media only screen and (max-width: 700px) {
+    .services .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service p {
+        min-width: 250px;
+    }
 }
 
 /* SOBRE NOSOTROS ------------------------ */
@@ -249,6 +268,16 @@ ul{
 
 .contact-title {
     color: #54BAB9;
+}
+
+@media only screen and (max-width: 1000px) {
+    .contact img {
+        max-width: 40px;
+    }
+    
+    .contact h4 {
+        font-size: 16px;
+    }
 }
 
 /* FOOTER -------------------------------- */

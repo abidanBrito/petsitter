@@ -7,7 +7,8 @@ body {
 
 .btn {
     background: #54BAB9;
-    border-radius: 25px; 
+    border-radius: 25px;
+    border: none;
 }
 
 .btn:hover {
@@ -30,82 +31,144 @@ body {
     font-family: 'Sansita Swashed';
 }
 
+.header-link {
+    background: none;
+    border: none;
+}
+
+.header-link:hover {
+    color: #54BAB9;
+    background: none;
+}
+
 /* CONTENIDO ----------------------------- */
 
-/* Mapa ----------------------------- */
-
-.control {
-    width: 100%; 
-    padding: 20px;
+.full-screen {
+    background: #fff;
+    height: 78.8vh;
 }
 
-.map {
-    height: 75vh;
-    background: url(../imgs/mapa-provisional.jpg);
-    background-size: cover;
+.full-screen .r-col {
+    background: rgba(84, 186, 185,0.2);
+    height: 78.8vh;
 }
 
-.map h1 {
-    color: #fff;
-    background: rgba(0,0,0,0.2);
-    padding: 10px;
+.full-screen .col-8 .lu-row {
+    height: 32vh;
+}
+
+.full-screen .col-8 .ld-row {
+    height: 46.8vh;
+}
+
+.full-screen .col-4 .r-row {
+    height: 39.4vh;
+}
+
+#btn_dis {
+    width: 80px;
+    height: 80px;
+    background: #c04345;
+    border: none;
+    border-radius: 25px;
+}
+
+#btn_dis:hover {
+    background: #9f4041;
+}
+
+#btn_con {
+    width: 80px;
+    height: 80px;
+    background: #54BA89;
+    border: none;
+    border-radius: 25px;
+}
+
+#btn_con:hover {
+    background: #348d62;
+}
+
+#btn_dis img,#btn_con img {
+    width: 50px;
+}
+
+.route {
+    width: 300px;
+}
+
+
+.arrow {
+    width: 50px;
+    height: 50px;
+    background: #54BAB9;
     border-radius: 10px;
 }
 
-/* Controles ----------------------------- */
-
-.control-robot {
-    height: 75vh;
+.arrow img {
+    width: 25px;
 }
 
-.directions {
-    border: none;
-    border-radius: 25px;
-    height: 80%;
-}
-
-.directions.forward img {
-    transform: rotate(-90deg);
-}
-
-.directions.right img {
-    transform: rotate(0deg);
-}
-
-.directions.left img {
-    transform: rotate(-180deg);
-}
-
-.directions.backward img {
-    transform: rotate(90deg);
+.sep {
+    width: 25px;
+    height: 50px;
+    margin: -15px;
 }
 
 .btn-stop {
-    background: #54BAB9;
-    border: none;
-    font-size: 22px;
-    width: 120px;
+    width: 200px;
 }
 
-.btn-stop:hover {
-    background: #306d6d;
+.forward {
+    transform: rotate(-90deg);
 }
 
-.btn-connection {
-    background: #54BAB9;
-    border: none;
-    font-size: 22px;
-    width: 180px;
+.backward {
+    transform: rotate(90deg);
 }
 
-.btn-connection:hover {
-    background: #6d3044;
+.left {
+    transform: rotate(-180deg);
+}
+
+#streaming {
+    height: 32vh;
+}
+
+#streaming #video {
+    width:300px;
+    height: 150px;
+    background: #ccc;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#foto #last-photo {
+    width:300px;
+    height: 150px;
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.btn-photo {
+    width: 300px;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    background-color: #306d6d;
+}
+
+#manual { 
+    height: 46.8vh;
+    padding: 20px;
 }
 
 /* FOOTER -------------------------------- */
 
 footer {
     padding: 10px;
+    height: 80px;
 }
 
 .social-media .sm-icons {

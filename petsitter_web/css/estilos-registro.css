@@ -21,6 +21,16 @@ body {
     font-family: 'Sansita Swashed';
 }
 
+.header-link {
+    background: none;
+    border: none;
+}
+
+.header-link:hover {
+    color: #54BAB9;
+    background: none;
+}
+
 /* CONTENIDO REGISTRO ----------------------------- */
 
 .lat-top {
@@ -66,6 +76,11 @@ form .form-group {
 
 .register-container {
     width: 100%;
+}
+
+.message-box {
+    color: #AA0000;
+    font-size: 14px;
 }
 
 .register-btn {
