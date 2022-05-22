@@ -1,12 +1,3 @@
-function actualizar(){
-  var tiempo = new Date()
-  var rnd =tiempo.getTime()
-  var imagen = document.getElementById('my_image')
-  imagen.src = 'imgs/Imagen_camara.jpg?'+rnd
-  console.log("Actualizando la imagen")
-  }
-let x = setInterval(actualizar(), 100) // 1000 = 1 segundo
-var conectado = false
 document.addEventListener('DOMContentLoaded', event => {
   if(document.getElementById("btn_dis")){
     document.getElementById("btn_dis").addEventListener("click", connect)
@@ -16,10 +7,6 @@ document.addEventListener('DOMContentLoaded', event => {
     document.getElementById("btn_dis").removeEventListener("click", connect)
     document.getElementById("btn_con").addEventListener("click", disconnect)
   }
-
- 
-
-  //setInterval(actualizar(), 100) // 1000 = 1 segundo
 
   document.getElementById("btn_forward").addEventListener("click", () => {call_service("delante")})
   document.getElementById("btn_backward").addEventListener("click", () => {call_service("atras")})
@@ -50,7 +37,6 @@ document.addEventListener('DOMContentLoaded', event => {
     data.ros.on("connection", () => {
       data.connected = true
       console.log("Conexion con ROSBridge correcta")
-      conectado = true
     })
     data.ros.on("error", (error) => {
       console.log("Se ha producido algun error mientras se intentaba realizar la conexion")
@@ -66,7 +52,6 @@ document.addEventListener('DOMContentLoaded', event => {
     data.ros.close()
     data.connected = false
     console.log('Clic en botón de desconexión')
-    conectado = false
   }
 
   function move() {
