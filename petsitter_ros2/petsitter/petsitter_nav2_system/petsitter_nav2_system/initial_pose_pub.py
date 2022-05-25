@@ -1,7 +1,14 @@
-# initial_pose_pub.py
+#################################################################################
+# Autor: Abidán Brito
+# Fecha: 25/05/2022
+# Nombre del fichero: initial_pose_pub.py
+# Descripción: Publicador de la posición inicial del robot (en el entorno real).
+#################################################################################
+
 import sys
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import ReliabilityPolicy, QoSProfile
 from geometry_msgs.msg import PoseWithCovarianceStamped
 
 class Publisher(Node):
@@ -22,7 +29,10 @@ class Publisher(Node):
         Crea el publisher y le asigna un callback con un temporizador
         """
         super().__init__('initial_pose_pub_node')
-        self.publisher_ = self.create_publisher(PoseWithCovarianceStamped, 'initialpose', 1)
+        self.publisher_ = self.create_publisher(
+            PoseWithCovarianceStamped, 
+            'initialpose',
+            QoSProfile(depth = 1, reliability = ReliabilityPolicy.BEST_EFFORT))
         timer_period = 0.5  # seconds
         self.i = 0.0
         self.timer_ = self.create_timer(timer_period, self.callback)
@@ -33,10 +43,15 @@ class Publisher(Node):
         """
         msg = PoseWithCovarianceStamped()
         msg.header.frame_id = 'map'
-        msg.pose.pose.position.x = 0.2
-        msg.pose.pose.position.y = 0.0
-        msg.pose.pose.orientation.w = 1.0
-        self.get_logger().info('Publishing  Initial Position  \n X= 0.2 \n Y=0.0 \n W = 1.0 ')
+        
+        # Position
+        msg.pose.pose.position.x = -0.75
+        msg.pose.pose.position.y = -0.95
+        
+        # Orientation
+        msg.pose.pose.orientation.z = 0.42
+        msg.pose.pose.orientation.w = 0.90
+        self.get_logger().info('Publishing  Initial Position  \n Position X = -0.75 \n Position Y = -0.95 \n Orientation Z = 0.42 \n Orientation W = 0.90 ')
         self.publisher_.publish(msg)
 
 def main(args=None):
