@@ -52,8 +52,8 @@ class SlamService(Node):
         self._scanning = False
 
         # Velocidad
-        self._angular_velocity = 1.4
-        self._linear_velocity_max = 0.6
+        self._angular_velocity = 1.6
+        self._linear_velocity_max = 0.2
 
         # Colisiones
         self._collision_max = 15
@@ -76,12 +76,12 @@ class SlamService(Node):
             msg: mensaje que recibe del topic, con un array de distancias.
        """
         # Lado derecho (0 - 15 º)
-        msg_distance_array = msg.ranges[0:20]
+        msg_distance_array = msg.ranges[0:15]
 
         # Left side (345 - 360 º)
-        msg_distance_array.extend(msg.ranges[340:359])
+        msg_distance_array.extend(msg.ranges[345:359])
 
-        if self._scanning and self._found_collision(msg_distance_array, 0.5):
+        if self._scanning and self._found_collision(msg_distance_array, 0.3):
             # Colisión encontrada      
             self._collision_counter -= 1
 

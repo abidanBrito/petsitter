@@ -1,12 +1,10 @@
-#petsitter_slam.launch.py
+#slam_auto_server_real_env.launch.py
 import os
-from ament_index_python.packages import get_package_share_directory
-from launch.actions import SetEnvironmentVariable
-from ament_index_python.packages import get_package_share_directory
-from launch_ros.actions import Node
 from launch import LaunchDescription
+from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument
+from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
@@ -17,7 +15,6 @@ def generate_launch_description():
             'use_sim_time',
             default_value='false',
             description='Use simulation (Gazebo) clock if true'),
-        #SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM','1'),
         Node(
             package='cartographer_ros',
             executable='cartographer_node',
@@ -42,5 +39,10 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': True}],
         arguments=['-d', rviz_config_dir]
+        ),
+        Node(
+            package='petsitter_slam_auto',
+            executable='slam_server',
+            output='screen'
         )
-    ]) 
+    ])
