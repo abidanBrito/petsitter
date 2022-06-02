@@ -53,6 +53,16 @@
       <pose>-2.0 -0.5 0.01 0.0 0.0 0.0</pose>
       <uri>model://turtlebot3_burger_pi</uri>
     </include>
+    
+    <include>
+      <pose>6.0 -6.0 0.01 0.0 0.0 5.0</pose>
+      <uri>model://doguinho</uri>
+    </include>
+    
+    <include>
+      <pose>5.0 -1.0 0.01 0.0 0.0 -5.0</pose>
+      <uri>model://dog</uri>
+    </include>
 
   </world>
 </sdf>

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="dog">
+    <link name="link">
+           
+      <collision name="dog">
+        <pose>0 0 0.02 0 0 1.57</pose>
+        <geometry>
+          <mesh>
+            <uri>model://dog/meshes/dog.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <pose>0 0 0.02 0 0 1.57</pose>
+        <geometry>
+          <mesh>
+            <uri>model://dog/meshes/dog.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
