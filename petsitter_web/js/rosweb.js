@@ -1,7 +1,58 @@
+/*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-storage.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
+
+// Configuración Firebase
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyABOCK6NTYF1jsv1WT5SiDZdFgUuhXLH2o",
+
+    authDomain: "petsitter-42488.firebaseapp.com",
+
+    projectId: "petsitter-42488",
+
+    storageBucket: "petsitter-42488.appspot.com",
+
+    messagingSenderId: "590637458117",
+
+    appId: "1:590637458117:web:e0681e78d84b708a3c46ac"
+
+};
+
+// Inicializar Firebase
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage()
+const db = getFirestore(app);
+
+// -----------------------------------------------
+
+const btnComedero = document.getElementById('btn-feeder') // boton para tomar fotos del comedero
+
+btnComedero.addEventListener('click', (e) => {
+
+    // Obtener imagen de storage desde 'images/[nombre_archivo_imagen]'
+
+    getDownloadURL(ref(storage, 'images/Imagen_cuenco.jpg')) 
+    .then(async (url) => {
+
+        // Insertar imagen con url en elemento <img>
+        const img = document.getElementById('img-feeder');
+        img.setAttribute('src', url);
+        
+
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error("Algo falló: " + error)
+    })
+
+})
+*/
 document.addEventListener('DOMContentLoaded', event => {
   if(document.getElementById("btn_dis")){
     document.getElementById("btn_dis").addEventListener("click", connect)
-    document.getElementById("btn_dis").addEventListener("click", subscribe)
     
   } else if(document.getElementById("btn_con")){
     document.getElementById("btn_dis").removeEventListener("click", connect)
@@ -15,6 +66,7 @@ document.addEventListener('DOMContentLoaded', event => {
   document.getElementById("btn_stop").addEventListener("click", () => {call_service("parar")})
   document.getElementById("comedero").addEventListener("click", send_pose_service_cuenco)
   document.getElementById("carga").addEventListener("click", send_pose_service_carga)
+  document.getElementById("btn-detect").addEventListener("click", detect_pets)
 
   let data = {
     // ros connection
@@ -108,19 +160,6 @@ document.addEventListener('DOMContentLoaded', event => {
     topic.publish(message)
   }*/
 
-  function subscribe() {
-    let topic = new ROSLIB.Topic({
-      ros: data.ros,
-      name: '/odom',
-      messageType: 'nav_msgs/msg/Odometry'
-    })
-    topic.subscribe((message) => {
-      data.position = message.pose.pose.position
-      document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
-      document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
-    })
-  }
-
   function call_service(valor){
     data.service_busy = true
     data.service_response = ''	
@@ -189,6 +228,32 @@ document.addEventListener('DOMContentLoaded', event => {
     })
   
     service.callService(request, (result) => {
+        data.service_busy = false
+        data.service_response = JSON.stringify(result)
+    }, (error) => {
+        data.service_busy = false
+        console.error(error)
+    }) 
+  }
+
+  function detect_pets(){
+    data.service_busy = true
+    data.service_response = ''	
+  
+    //definimos los datos del servicio
+    let service = new ROSLIB.Service({
+        ros: data.ros,
+        name: '/detect',
+        serviceType: 'petsitter_custom_interface/srv/DetectMsg'
+    })
+  
+    let request = new ROSLIB.ServiceRequest({
+        detect: true
+      
+    })
+  
+    service.callService(request, (result) => {
+        console.log("Detection mode: ON")
         data.service_busy = false
         data.service_response = JSON.stringify(result)
     }, (error) => {
