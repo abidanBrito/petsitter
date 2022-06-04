@@ -22,7 +22,8 @@ setup(
         'console_scripts': [
         	'detect_pets=petsitter_detect_pets.detect_pets:main',
         	'detect_pets_service=petsitter_detect_pets.detect_pets_service:main',
-        	'detect_pets_service_real=petsitter_detect_pets.detect_pets_service_real:main'
+        	'detect_pets_service_real=petsitter_detect_pets.detect_pets_service_real:main',
+        	'detect_german_sheperd=petsitter_detect_pets.detect_german_sheperd:main'
         	
         ],
     },
