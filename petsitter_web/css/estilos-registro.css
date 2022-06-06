@@ -74,6 +74,10 @@ form .form-group {
     border-bottom: 4px solid #54BAB9;
 }
 
+.container-fluid input:focus {
+    border-bottom: 4px solid #54BAB9;
+}
+
 .register-container {
     width: 100%;
 }
@@ -103,6 +107,10 @@ form .form-group {
 }
 
 .register:hover {
+    color: #306d6d;
+}
+
+.register:focus {
     color: #306d6d;
 }
 

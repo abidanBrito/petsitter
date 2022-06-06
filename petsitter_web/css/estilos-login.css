@@ -64,6 +64,10 @@ form .form-group {
     border-bottom: 4px solid #54BAB9;
 }
 
+.container-fluid input:focus {
+    border-bottom: 4px solid #54BAB9;
+}
+
 .login-container {
     width: 100%;
 }
@@ -86,6 +90,10 @@ form .form-group {
 .login-btn:hover {
     background: #306d6d;
     color: #FBF8F1;
+}
+
+.login-btn:focus {
+    background: #306d6d;
 }
 
 .register {

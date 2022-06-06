@@ -16,10 +16,6 @@ body {
     background: #306d6d;
 }
 
-.btn:focus {
-    background: #54BAB9;
-}
-
 /* HEADER -------------------------------- */
 
 .header {
@@ -55,47 +51,62 @@ body {
 /* CONTENIDO ----------------------------- */
 
 .full-screen {
-    height: 78.8vh;
-    padding: 20px;
+    background: #fff;
+    height: 79vh;
 }
 
-#up-row, #down-row {
-    margin-top: 25px;
+.full-screen .r-col {
+    background: rgba(84, 186, 185,0.2);
+    height: 79vh;
 }
 
-.power {
-    width: 80px;
-    height: 80px;
-    background: #c04345;
-    border: none;
-    border-radius: 25px;
+/* ---- streaming ---- */
+
+#streaming {
+    height: 32vh;
 }
 
-.power:hover {
-    background: #9f4041;
+#streaming #video {
+    width:300px;
+    height: 150px;
+    background: #ccc;
+    border-radius: 10px;
 }
 
-.power2 {
-    width: 80px;
-    height: 80px;
-    background: #54BA89;
-    border: none;
-    border-radius: 25px;
-}
-
-.power2:hover {
-    background: #348d62;
-}
-
-.power img,.power2 img {
-    width: 50px;
-}
-
-.route {
+#btn-video {
     width: 300px;
 }
 
+.encender {
+    background: #54BA89;
 
+}
+
+.encender:hover {
+    background: #348d62;
+}
+
+.encender:focus {
+    background: #54BA89;
+}
+
+.apagar {
+    background: #c04345;
+}
+
+.apagar:hover {
+    background: #9f4041;
+}
+
+.apagar:focus {
+    background: #c04345;
+}
+
+/* ----- control manual ----- */
+
+#manual {
+    margin-top: 50px;
+}
 
 .arrow {
     width: 50px;
@@ -115,7 +126,7 @@ body {
 }
 
 .btn-stop {
-    width: 200px;
+    width: 160px;
 }
 
 .forward {
@@ -128,39 +139,6 @@ body {
 
 .left {
     transform: rotate(-180deg);
-}
-
-#streaming {
-    height: 32vh;
-}
-
-#streaming #video {
-    width:300px;
-    height: 150px;
-    background: #ccc;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.photo {
-    width:300px;
-    height: 150px;
-    background: #ccc;
-    border-radius: 10px;
-}
-
-.btn-photo {
-    width: 300px;
-    margin-top: 20px;
-}
-
-.progress-bar {
-    background-color: #306d6d;
-}
-
-#manual { 
-    height: 46.8vh;
-    padding: 20px;
 }
 
 /* FOOTER -------------------------------- */

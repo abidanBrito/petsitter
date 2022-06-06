@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', event => {
-  if(document.getElementById("btn_dis")){
+  if(document.getElementById("btn_dis").classList.contains('power')){ // si el boton rojo contiene la clase power
     document.getElementById("btn_dis").addEventListener("click", connect)
     document.getElementById("btn_dis").addEventListener("click", subscribe)
     
-  } else if(document.getElementById("btn_con")){
+  } else if(document.getElementById("btn_con").classList.contains('power2')){ // si el boton verde contiene la clase power2
     document.getElementById("btn_dis").removeEventListener("click", connect)
     document.getElementById("btn_con").addEventListener("click", disconnect)
   }

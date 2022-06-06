@@ -19,17 +19,6 @@
     <!-- Código JS para ROSWEB -->
     <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
     <script type="module" src="js/rosweb.js"></script>
-    <script type="text/javascript">
-        
-        function actualizar(){
-        var tiempo = new Date();
-        var rnd =tiempo.getTime();
-        var imagen = document.getElementById('my_image');
-        imagen.src = 'imgs/Imagen_camara.jpg?'+rnd;
-        }
-        var t =setInterval('actualizar()', 100); // 1000 = 1 segundo
-        
-        </script>
 
 </head>
 <body>
@@ -40,6 +29,12 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><h2 class="logo">PetSitter</h2></a>
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="btn btn-primary header-link active" href="control.html">Control</a>
+        </li> 
+        <li class="nav-item">
+            <a class="btn btn-primary header-link" href="mapa.html">Mapa</a>
+        </li>  
         <li class="nav-item">
           <a class="btn btn-primary header-link" aria-current="page" id="logout">Cerrar sesión</a>
         </li>
@@ -53,23 +48,19 @@
 
         <div class="container-fluid full-screen">
 
-            <div class="row">
+                    <div class="row" id="up-row">
 
-                <div class="col-8">
-
-                    <div class="row lu-row">
-
-                        <div class="col-6 align-self-center d-flex flex-column justify-content-center align-items-center">
+                        <div class="col-4 align-self-center d-flex flex-column justify-content-center align-items-center">
 
                             <h3>Estado del robot</h3>
                             <h4 id="conn-text">Desconectado</h4>
                             <!-- Cuando se pulsa el botón, se cambia el nombre de la clase entre power (desconectado) y power2 (conectado) -->
-                            <button class="power d-flex justify-content-center align-items-center" id="btn_dis" onclick="toggleButton()">
+                            <button class="power" id="btn_dis" onclick="toggleButton()">
                                 <img src="imgs/power.png" alt="Power">
                             </button>
 
                         </div>
-                        <div class="col-6 align-self-center d-flex flex-column justify-content-center align-items-center">
+                        <div class="col-4 align-self-center d-flex flex-column justify-content-center align-items-center">
 
                             <h3>¿Dónde quieres ir?</h3>
                             <br>
@@ -78,102 +69,72 @@
                             <button id="carga" class="btn btn-primary route">Punto de carga</button>
 
                         </div>
+                        <div class="col-4 align-self-center d-flex flex-column justify-content-center align-items-center">
 
-                    </div>
-                    <div class="row ld-row" style="padding: 20px;">
-
-                        <h3>Estado del comedero</h3>
-                        <hr style="height: 4px; border-width:0; color: #306C6D; background-color:#306C6D;">
-
-                        <div class="col-6 align-self-center d-flex flex-column justify-content-center align-items-center" id="foto">
-
-                            <div id="last-photo" class="align-self-center d-flex flex-column justify-content-center align-items-center">
-                                <img src="imgs/camera.png" alt="Última foto" id="img-photo">
-                            </div>
-                            <button class="btn btn-primary btn-photo" id="btn-photo">Tomar foto</button>
-
-                        </div>
-
-                        <div class="col-6 d-flex flex-column p-2" id="foto-data">
-
-                            <h4>· Cantidad:</h4>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <br><br>
-                            <h4>· Hora de la última foto:</h4>
-                            <h5>16:20 16/05/2022</h5>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-4 r-col">
-
-                    <div class="row r-row">
-                        
-                        <div class="col-12 align-self-center d-flex flex-column justify-content-center align-items-center" id="streaming">
-
-                            <h3>Streaming</h3>
-                            <div id="video" class="align-self-center d-flex flex-column justify-content-center align-items-center">
-                                <img src="Imagen_camara.jpg" alt="Streaming" id="my_image" width="360" height="200">
-                            </div>
-                            
-                        </div>
-
-                    </div>
-
-                    <div class="row r-row">
-
-                        <div class="col-12 align-self-center d-flex flex-column align-items-center" id="manual">
-
-                            <div class="row">
-                                <div class="col-12 align-self-center d-flex flex-column align-items-center">
-                                    <button class="arrow btn d-flex justify-content-center align-items-center" id="btn_forward">
-                                        <img src="imgs/arrow.png" alt="Atrás" class="forward">
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-4 align-self-center d-flex flex-column align-items-center">
-                                    <button class="arrow btn d-flex justify-content-center align-items-center" id="btn_left">
-                                        <img src="imgs/arrow.png" alt="Izquierda" class="left">
-                                    </button>
-                                </div>
-                                <div class="col-4">
-                                    <div class="sep"></div>
-                                </div>
-                                <div class="col-4 align-self-center d-flex flex-column align-items-center">
-                                    <button class="arrow btn d-flex justify-content-center align-items-center" id="btn_right">
-                                        <img src="imgs/arrow.png" alt="Derecha" class="right">
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12 align-self-center d-flex flex-column align-items-center">
-                                    <button class="arrow btn d-flex justify-content-center align-items-center" id="btn_backward">
-                                        <img src="imgs/arrow.png" alt="Atrás" class="backward">
-                                    </button>
-                                </div>
-                            </div>
+                            <h3>Rescaneado</h3>
                             <br>
-                            <div class="row">
-                                <div class="col-12 align-self-center d-flex flex-column align-items-center">
-                                    <a href="#" class="btn btn-primary btn-stop" id="btn_stop">Detener</a>
-                                </div>
-                            </div>
+                            <button id="escaneado" class="btn btn-primary route">Iniciar</button>
+                            <br>
+                            <h5 id="timer">Tiempo restante: <span id="timer-count">05:00.0</span></h5>
 
                         </div>
 
                     </div>
+                    <div class="row" id="down-row">
 
-                </div>
+                        <div class="col-8">
+                            <h3>Estado del comedero</h3>
+                            <hr style="height: 4px; border-width:0; color: #306C6D; background-color:#306C6D;">
 
-            </div>
+                            <div class="col-12 d-flex align-items-center">
+
+                                <div class="col-6 align-self-center d-flex flex-column justify-content-center align-items-center">
+
+                                    <div id="last-photo" class="photo align-self-center d-flex flex-column justify-content-center align-items-center">
+                                        <img src="imgs/camera.png" alt="Última foto" id="img-feeder">
+                                    </div>
+                                    <button class="btn btn-primary btn-photo" id="btn-feeder">Tomar foto</button>
+        
+                                </div>
+        
+                                <div class="col-6 d-flex flex-column p-2" id="foto-data">
+        
+                                    <h4>· Cantidad:</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progress-bar"></div>
+                                    </div>
+                                    <br><br>
+                                    <h4>· Hora de la última foto:</h4>
+                                    <h5 id="fecha"></h5>
+        
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+                            <h3>Estado del comedero</h3>
+                            <hr style="height: 4px; border-width:0; color: #306C6D; background-color:#306C6D;">
+
+                            <div class="col-12 d-flex align-items-center">
+
+                                <div class="col-12 align-self-center d-flex flex-column justify-content-center align-items-center">
+
+                                    <div id="pet-photo" class="photo align-self-center d-flex flex-column justify-content-center align-items-center">
+                                        <img src="imgs/camera.png" alt="Última foto">
+                                    </div>
+                                    <button class="btn btn-primary btn-photo">Tomar foto</button>
+        
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                    </div>
 
         </div>
         
@@ -198,6 +159,8 @@
 
     <script type="module" src="js/logout.js"></script>
     <script type="text/javascript" src="js/conexion-robot.js"></script>
+    <script type="module" src="js/bajar-fotos.js"></script>
+    <script type="text/javascript" src="js/contador.js"></script>
 
 </body>
 </html>
