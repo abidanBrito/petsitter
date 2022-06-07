@@ -113,7 +113,7 @@ class Service(Node):
                 target_size=(WIDTH, HEIGHT))
                 
             #Importamos el modelo entrenado, que está en este directorio
-            model = load_model("/home/" +  str(getuser()) + "/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/petsitter_model_real")
+            model = load_model("/home/" +  str(getuser()) + "/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/petsitter_model_2")
 
             predictions = model.predict(test_generator)
             #print(predictions.size / 3)
