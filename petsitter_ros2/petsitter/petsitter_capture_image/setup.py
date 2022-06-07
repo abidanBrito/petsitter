@@ -22,7 +22,9 @@ setup(
         'console_scripts': [  
         	'capture=petsitter_capture_image.capture:main',
         	'capture_real=petsitter_capture_image.capture_real:main',
-                'analize=petsitter_capture_image.photo_opencv:main'
+                'analize=petsitter_capture_image.photo_opencv:main',
+                'analize_real=petsitter_capture_image.photo_opencv_real:main'
+
 
         ],
     },
