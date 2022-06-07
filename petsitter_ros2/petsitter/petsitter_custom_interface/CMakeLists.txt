@@ -44,5 +44,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/Move.action"
   "action/Rosweb.action"
   "srv/OpencvMsg.srv"
+  "srv/DetectMsg.srv"
+
 )
 ament_package()
