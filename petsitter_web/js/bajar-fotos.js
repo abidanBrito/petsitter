@@ -29,17 +29,30 @@ const db = getFirestore(app);
 // -----------------------------------------------
 
 const btnComedero = document.getElementById('btn-feeder') // boton para tomar fotos del comedero
+const btnMascota = document.getElementById('btn-petPhoto') // boton para tomar fotos de la mascota
 const prog = document.getElementById('progress-bar') // barra de cantidad de comida
 const fecha = document.getElementById('fecha') // texto fecha de la ultima foto
+const textoDeteccion = document.getElementById('detect-text') // texto para el tipo de mascota
+const textoMascota = document.getElementById('pet-text') // tipo mascota detectada
 let amount = null; // cantidad de comida que obtenemos de Firestore
-let lastDate = ''; // fecha de la última foto tomada del comedero
+let lastDate = ''; // fecha de la última foto
+let pet = ''; // tipo de mascota
 
 window.onload = descargarDatos()
+//window.onload = descargarMascota()
 
 btnComedero.addEventListener('click', (e) => { // al clicar el botón de Tomar foto:
 
   // Se descargan los últimos datos subidos
   descargarDatos()
+
+})
+
+btnMascota.addEventListener('click', (e) => { // al clicar el botón de Tomar foto:
+
+  // Se descargan los últimos datos subidos
+  textoDeteccion.removeAttribute("hidden");
+  descargarMascota()
 
 })
 
@@ -71,6 +84,43 @@ function descargarDatos() {
  
          // Insertar imagen con url en elemento <img>
          const img = document.getElementById('img-feeder');
+         img.setAttribute('src', url);
+         setTimeout( () => { 
+           img.style.width = "300px";
+           img.style.height = "150px";
+           img.style.borderRadius = "10px";
+         }, 100);
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error("Algo falló: " + error)
+    })
+}
+
+function descargarMascota() {
+
+  // Subir imagen a storage en 'images/[nombre_archivo_imagen]'
+
+  getDownloadURL(ref(storage, 'images/mascota.jpg')) // path de la imagen en Storage
+  .then(async (url) => {
+
+         // Obtener mascota desde Firestore
+         const docRef = doc(db, "Imagenes", "mascota");
+         const docSnap = await getDoc(docRef);
+ 
+         if (docSnap.exists()) {
+           pet = docSnap.data()["tipo de mascota"]
+           //console.log("cantidad = " + amount) 
+         } else {
+           // doc.data() will be undefined in this case
+           console.error("No existe el documento 'imagen'");
+         }
+
+         // Cambiar tipo de mascota
+        textoMascota.innerHTML = pet;
+ 
+         // Insertar imagen con url en elemento <img>
+         const img = document.getElementById('img-pet');
          img.setAttribute('src', url);
          setTimeout( () => { 
            img.style.width = "300px";
