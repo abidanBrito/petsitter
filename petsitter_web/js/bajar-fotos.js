@@ -32,6 +32,7 @@ const btnComedero = document.getElementById('btn-feeder') // boton para tomar fo
 const prog = document.getElementById('progress-bar') // barra de cantidad de comida
 const fecha = document.getElementById('fecha') // texto fecha de la ultima foto
 let amount = null; // cantidad de comida que obtenemos de Firestore
+let lastDate = ''; // fecha de la última foto tomada del comedero
 
 window.onload = descargarDatos()
 
@@ -49,25 +50,13 @@ function descargarDatos() {
   getDownloadURL(ref(storage, 'images/Imagen_cuenco.jpg')) // path de la imagen en Storage
   .then(async (url) => {
 
-      // Obtener fecha actual (huso horario de Madrid)
-
-      let options = {
-          timeZone: 'Europe/Madrid',
-          year: 'numeric',
-          month: 'numeric',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric',
-        },
-        formatter = new Intl.DateTimeFormat([], options);
-
          // Obtener cantidad de comedero desde Firestore
-         const docRef = doc(db, "Imagenes", "imagen");
+         const docRef = doc(db, "Imagenes", "cuenco");
          const docSnap = await getDoc(docRef);
  
          if (docSnap.exists()) {
            amount = docSnap.data()["cantidad"]
+           lastDate = docSnap.data()["fecha"]
            //console.log("cantidad = " + amount) 
          } else {
            // doc.data() will be undefined in this case
@@ -78,7 +67,7 @@ function descargarDatos() {
          prog.style.width = amount + "%";
 
          // Cambiar fecha
-        fecha.innerHTML = formatter.format(new Date())
+        fecha.innerHTML = lastDate;
  
          // Insertar imagen con url en elemento <img>
          const img = document.getElementById('img-feeder');
