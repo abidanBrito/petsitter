@@ -1,3 +1,3 @@
-string analize # Toma una foto y la analiza
+bool analize # Toma una foto y la analiza
 ---
 bool success # Respuesta
