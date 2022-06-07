@@ -20,7 +20,7 @@ from petsitter_custom_interface.srv import OpencvMsg
 
 
 # credenciales para Firestore con firebase_admin
-cred = credentials.Certificate("/home/ruben/turtlebot3_ws/src/petsitter-main/petsitter_ros2/petsitter/petsitter_capture_image/petsitter_capture_image/firebase-sdk.json")
+cred = credentials.Certificate("/home/ivan/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_capture_image/petsitter_capture_image/firebase-sdk.json")
 firebase_admin.initialize_app(cred)
 
 
@@ -104,12 +104,12 @@ class ServiceOpencv(Node):
             cv2.imshow("Imagen capturada por el robot", cv_image)
                 
             cv2.waitKey(1)    
-            cv2.imwrite("/home/ruben/turtlebot3_ws/src/petsitter-main/petsitter_web/imgs/Imagen_cuenco.jpg", cv_image)
+            cv2.imwrite("/home/ivan/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_web/imgs/Imagen_cuenco.jpg", cv_image)
         
             #Opencv
             #Cargamos las dos imágenes
-            img1 = cv2.imread("/home/ruben/turtlebot3_ws/src/petsitter-main/petsitter_web/imgs/Imagen_cuenco.jpg")
-            img2 = cv2.imread("/home/ruben/turtlebot3_ws/src/petsitter-main/petsitter_web/imgs/Imagen_cuenco.jpg")
+            img1 = cv2.imread("/home/ivan/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_web/imgs/Imagen_cuenco.jpg")
+            img2 = cv2.imread("/home/ivan/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_web/imgs/Imagen_cuenco.jpg")
 
             #Comparamos cada imagen con la original mediate subtract: sustrae cada píxel y valor de color
             diff_12 = cv2.subtract(img1,img2)
@@ -208,7 +208,7 @@ class ServiceOpencv(Node):
         # subir imagen a Storage
             storage = firebase.storage()
 
-            my_image = "/home/ruben/turtlebot3_ws/src/petsitter-main/petsitter_web/imgs/Imagen_cuenco.jpg"
+            my_image = "/home/ivan/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_web/imgs/Imagen_cuenco.jpg"
             image_path = "/images/Imagen_cuenco.jpg" # ruta donde se guarda la imagen
 
             # Upload image
