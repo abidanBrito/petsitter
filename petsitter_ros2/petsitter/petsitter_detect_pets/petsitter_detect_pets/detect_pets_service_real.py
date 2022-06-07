@@ -111,7 +111,7 @@ class Service(Node):
                 target_size=(WIDTH, HEIGHT))
                 
             #Importamos el modelo entrenado, que está en este directorio
-            model = load_model("/home/" +  str(getuser()) + "/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/petsitter_model_real")
+            model = load_model("/home/" +  str(getuser()) + "/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/petsitter_model_2")
 
             predictions = model.predict(test_generator)
             #print(predictions.size / 3)
@@ -143,12 +143,12 @@ class Service(Node):
                     print("Parece que es un perro")
 
                     classes_path = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/data/new_names.names' 
-                    weights = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/checkpoints/yolov3_train_20.tf' 
+                    weights = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/checkpoints/yolov3_train_17.tf' 
                     tiny = False #yolov3 or yolov3-tiny
                     size = 416 #resize images to
-                    image = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/test/input/pastor_aleman5.jpeg' 
+                    image = "/home/" +  str(getuser()) + "/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/corpus/test/deteccion.jpg"
                     tfrecord = None 
-                    output = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/test/output/pastor_aleman5.jpeg' 
+                    output = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/test/output/output.jpg' 
                     num_classes = 1 
 
                     physical_devices = tf.config.experimental.list_physical_devices('GPU')
@@ -185,7 +185,7 @@ class Service(Node):
                     logging.info('time: {}'.format(t2 - t1))
 
                     for i in range(nums[0]):
-                        if np.array(scores[0][i]) >= 0.8:
+                        if np.array(scores[0][i]) >= 0.4:
                             print("Con bastante seguridad se trata de un pastor aleman")
 
                             # subir imagen a Storage
@@ -208,7 +208,7 @@ class Service(Node):
                                 u'pastor aleman': "Sí"
                             })
 
-                        elif np.array(scores[0][i]) < 0.8 and np.array(scores[0][i]) > 0.4:
+                        elif np.array(scores[0][i]) < 0.4:
                             print("Es posible que sea un pastor alemán u otra raza de perro")
 
                             # subir imagen a Storage
