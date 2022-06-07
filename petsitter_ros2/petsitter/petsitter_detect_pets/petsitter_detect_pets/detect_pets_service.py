@@ -26,6 +26,8 @@ from firebase_admin import firestore
 from firebase_admin import storage
 
 import pyrebase
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from getpass import getuser
 
@@ -143,12 +145,12 @@ class Service(Node):
                     print("Parece que es un perro")
 
                     classes_path = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/data/new_names.names' 
-                    weights = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/checkpoints/yolov3_train_20.tf' 
+                    weights = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/checkpoints/yolov3_train_17.tf' 
                     tiny = False #yolov3 or yolov3-tiny
                     size = 416 #resize images to
-                    image = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/test/input/pastor_aleman5.jpeg' 
+                    image = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/corpus/test/deteccion.jpg' 
                     tfrecord = None 
-                    output = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/test/output/pastor_aleman5.jpeg' 
+                    output = '/home/' + str(getuser()) + '/turtlebot3_ws/src/Petsitter_Sprint3/petsitter/petsitter_ros2/petsitter/petsitter_detect_pets/german_sheperd_model/test/output/deteccion.jpg' 
                     num_classes = 1 
 
                     physical_devices = tf.config.experimental.list_physical_devices('GPU')
