@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', event => {
   if(document.getElementById("btn_dis").classList.contains('power')){ // si el boton rojo contiene la clase power
+    document.getElementById("btn_dis").removeEventListener("click", disconnect)
     document.getElementById("btn_dis").addEventListener("click", connect)
-    document.getElementById("btn_dis").addEventListener("click", subscribe)
+    //document.getElementById("btn_dis").addEventListener("click", subscribe)
     
-  } else if(document.getElementById("btn_con").classList.contains('power2')){ // si el boton verde contiene la clase power2
+  } else if(document.getElementById("btn_dis").classList.contains('power2')){ // si el boton verde contiene la clase power2
     document.getElementById("btn_dis").removeEventListener("click", connect)
-    document.getElementById("btn_con").addEventListener("click", disconnect)
+    document.getElementById("btn_dis").addEventListener("click", disconnect)
   }
 
-  document.getElementById("btn_forward").addEventListener("click", () => {call_service("delante")})
+  /*document.getElementById("btn_forward").addEventListener("click", () => {call_service("delante")})
   document.getElementById("btn_backward").addEventListener("click", () => {call_service("atras")})
   document.getElementById("btn_left").addEventListener("click", () => {call_service("izquierda")})
   document.getElementById("btn_right").addEventListener("click", () => {call_service("derecha")})
-  document.getElementById("btn_stop").addEventListener("click", () => {call_service("parar")})
+  document.getElementById("btn_stop").addEventListener("click", () => {call_service("parar")})*/
   document.getElementById("comedero").addEventListener("click", send_pose_service_cuenco)
   document.getElementById("carga").addEventListener("click", send_pose_service_carga)
 
@@ -108,7 +109,7 @@ document.addEventListener('DOMContentLoaded', event => {
     topic.publish(message)
   }*/
 
-  function subscribe() {
+  /*function subscribe() {
     let topic = new ROSLIB.Topic({
       ros: data.ros,
       name: '/odom',
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded', event => {
       document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
       document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
     })
-  }
+  }*/
 
   function call_service(valor){
     data.service_busy = true
