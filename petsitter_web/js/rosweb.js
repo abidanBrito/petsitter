@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', event => {
   document.getElementById("btn_stop").addEventListener("click", () => {call_service("parar")})*/
   document.getElementById("comedero").addEventListener("click", send_pose_service_cuenco)
   document.getElementById("carga").addEventListener("click", send_pose_service_carga)
+  document.getElementById("btn-feeder").addEventListener("click", detect_food)
 
   let data = {
     // ros connection
@@ -94,6 +95,31 @@ document.addEventListener('DOMContentLoaded', event => {
       angular: { x: 0, y: 0, z: 0 },
     })
     topic.publish(message)
+  }
+  
+  function detect_food(){
+  	data.service_busy = true
+    data.service_response = ''	
+  
+    //definimos los datos del servicio
+    let service = new ROSLIB.Service({
+        ros: data.ros,
+        name: '/analize',
+        serviceType: 'petsitter_custom_interface/srv/OpencvMsg'
+    })
+  
+    let request = new ROSLIB.ServiceRequest({
+        analize: true
+      
+    })
+  
+    service.callService(request, (result) => {
+        data.service_busy = false
+        data.service_response = JSON.stringify(result)
+    }, (error) => {
+        data.service_busy = false
+        console.error(error)
+    }) 
   }
 
   /*function set_initial_pos() {
