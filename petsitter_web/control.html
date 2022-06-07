@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-4 align-self-center d-flex flex-column justify-content-center align-items-center">
 
-                            <h3>Rescaneado</h3>
+                            <h3>Reescaneado</h3>
                             <br>
                             <button id="escaneado" class="btn btn-primary route">Iniciar</button>
                             <br>
@@ -122,9 +122,10 @@
                                 <div class="col-12 align-self-center d-flex flex-column justify-content-center align-items-center">
 
                                     <div id="pet-photo" class="photo align-self-center d-flex flex-column justify-content-center align-items-center">
-                                        <img src="imgs/camera.png" alt="Última foto">
+                                        <img src="imgs/camera.png" alt="Última foto" id="img-pet">
                                     </div>
-                                    <button class="btn btn-primary btn-photo">Tomar foto</button>
+                                    <h6 class="align-self-center" id="detect-text" hidden>Mascota: Se ha detectado un <span id="pet-text"></span></h6>
+                                    <button class="btn btn-primary btn-photo" id="btn-petPhoto">Tomar foto</button>
         
                                 </div>
 
