@@ -1,0 +1,3 @@
+bool detect # Determina si se inicia el SLAM autónomo
+---
+bool success # Respuesta

@@ -1,3 +1,11 @@
+#################################################################################
+# Autor: Abidán Brito
+# Fecha: 25/05/2022
+# Nombre del fichero: slam_server.py
+# Descripción: Definición de la clase SlamService, que crea el nodo para el 
+#              SLAM autónomo. for the autonomous SLAM.
+#################################################################################
+
 # Librerías de mensajes
 from petsitter_custom_interface.srv import ScanMsg
 from sensor_msgs.msg import LaserScan
@@ -31,7 +39,7 @@ class SlamService(Node):
 
     def __init__(self):
         """
-        Crea el servicio del servidor de SLAM autónomo, se suscribe al topic '\scan' y
+        Crea el servicio del servidor de SLAM autónomo, se suscribe al topic '/scan' y
         crea el objeto publicador 'self._publisher'.
         """
         super().__init__('slam_server') 
@@ -44,8 +52,8 @@ class SlamService(Node):
         self._scanning = False
 
         # Velocidad
-        self._angular_velocity = 2.5
-        self._linear_velocity_max = 0.6
+        self._angular_velocity = 1.6
+        self._linear_velocity_max = 0.2
 
         # Colisiones
         self._collision_max = 15
@@ -73,7 +81,7 @@ class SlamService(Node):
         # Left side (345 - 360 º)
         msg_distance_array.extend(msg.ranges[345:359])
 
-        if self._scanning and self._found_collision(msg_distance_array, 0.5):
+        if self._scanning and self._found_collision(msg_distance_array, 0.3):
             # Colisión encontrada      
             self._collision_counter -= 1
 
@@ -97,11 +105,16 @@ class SlamService(Node):
             request (string): Contiene la orden de comenzar el escaneado.
             response (bool): Indica si se ha obtenido la orden y es válida.
        """
-        if request.scan == "scan":
-            self.get_logger().info('Received \'scan\' order')
-
+        if request.scan == "start":
+            self.get_logger().info('Received start order')
             self._publish_twist_msg(self._linear_velocity_max, 0.0)
             self._scanning = True
+            response.success = True
+
+        elif request.scan == "stop":
+            self.get_logger().info('Received stop order')
+            self._publish_twist_msg(0.0, 0.0)
+            self._scanning = False
             response.success = True
 
         else:
@@ -122,7 +135,7 @@ class SlamService(Node):
         for d in distance_range:
             if d <= collision_threshold:
                 is_collision = True
-                self.get_logger().info('--- Collision detected at ' + str(d) + ' ---')
+                #self.get_logger().info('--- Collision detected at ' + str(d) + 'm ---')
                 break
 
         return is_collision

@@ -1,4 +1,4 @@
-#my_slam.launch.py
+#petsitter_slam.launch.py
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch.actions import SetEnvironmentVariable
@@ -17,7 +17,6 @@ def generate_launch_description():
             'use_sim_time',
             default_value='false',
             description='Use simulation (Gazebo) clock if true'),
-
         #SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM','1'),
         Node(
             package='cartographer_ros',
