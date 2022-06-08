@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', event => {
   document.getElementById("comedero").addEventListener("click", send_pose_service_cuenco)
   document.getElementById("carga").addEventListener("click", send_pose_service_carga)
   document.getElementById("btn-feeder").addEventListener("click", detect_food)
-  document.getElementById("escaneado").addEventListener("click", scan_map_toggle)
+  document.getElementById("escaneado").addEventListener("click", scan_map_countdown)
 
   let data = {
     // ros connection
@@ -255,6 +255,44 @@ document.addEventListener('DOMContentLoaded', event => {
       slamService.callService(request, (res) => {
         data.service_busy = false
         data.scanning = (data.scanning == true) ? false : true
+        console.log("Scanning " + data.scanning)
+        data.service_response = JSON.stringify(res)
+      }, (err) => {
+        data.service_busy = false
+        console.error("Service call failed - " + err)
+      })
+    }
+    catch (err) {
+      console.error("Start scan order failed! - " + err)
+    }
+  }
+
+  function scan_map_countdown() {
+    if (data.connected == false) {
+      connect();
+    }
+
+    try {
+      // Limpiamos la respuesta (en caso de que hubiese alguna)
+      // y ponemos el servicio en uso
+      data.service_busy = true
+      data.service_response = ''
+
+      // Servicio del SLAM autónomo
+      let slamService = new ROSLIB.Service({
+        ros: data.ros,
+        name: '/autonomous_slam',
+        serviceType: 'petsitter_custom_interface/srv/ScanMsg'
+      })
+
+      // Petición  
+      let request = new ROSLIB.ServiceRequest({
+        scan: "countdown"
+      })
+
+      // Realizamos la llamada al servicio
+      slamService.callService(request, (res) => {
+        data.service_busy = false
         console.log("Scanning " + data.scanning)
         data.service_response = JSON.stringify(res)
       }, (err) => {

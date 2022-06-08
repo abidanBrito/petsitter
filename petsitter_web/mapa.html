@@ -19,6 +19,7 @@
     <!-- Código JS para ROSWEB -->
     <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
     <script type="module" src="js/rosweb_2.js"></script> 
+    <script type="module" src="js/map.js"></script> 
 <!--
     <script type="text/javascript">
         
@@ -65,7 +66,8 @@
                 <div class="col-8 l-col d-flex flex-column justify-content-center align-items-center">
 
                     <!-- Aquí irá el mapa -->
-                    <h4>Se necesita escanear el entorno para mostrar el mapa</h4>
+                    <canvas id="canvas" width="1200px" height="600px"></canvas>
+                    <h4 id="map-hint">Se necesita escanear el entorno para mostrar el mapa</h4>
 
                 </div>
 
@@ -83,6 +85,7 @@
                         </div>
                         <!-- Cuando se pulsa el botón, se cambia el nombre de la clase entre encender(desconectado) y apagar(conectado) -->
                         <button id="btn-video" class="btn btn-primary encender" onclick="toggleButton()">Encender</button>
+                        <button id="btn-map" class="btn btn-primary">Cargar mapa</button>
 
                     </div>
 
