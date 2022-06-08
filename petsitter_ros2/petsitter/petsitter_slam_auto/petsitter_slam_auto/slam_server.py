@@ -183,6 +183,7 @@ class SlamService(Node):
        
         self.get_logger().info('--- Saving out generated map ---')
         os.system("ros2 run nav2_map_server map_saver_cli -f $HOME/turtlebot3_ws/src/petsitter/petsitter_ros2/petsitter/petsitter_nav2_system/map/map_auto")
+        os.system("ros2 run $HOME/turtlebot3_ws/src/petsitter/petsitter_ros2/petsitter_slam_auto/petsitter_slam_auto/upload_map_firestore.py")
 
 def main(args=None):
     """
