@@ -114,18 +114,22 @@ class SlamService(Node):
        """
         if request.scan == "start":
             self.get_logger().info('--- Received start order ---')
-            self._countdown.start()
             self._publish_twist_msg(self._linear_velocity_max, 0.0)
+            self._scanning = True
+            response.success = True
+        
+        elif request.scan == "countdown":
+            self.get_logger().info('--- Received countdown order ---')
+            self._publish_twist_msg(self._linear_velocity_max, 0.0)
+            self._countdown.start()
             self._scanning = True
             response.success = True
 
         elif request.scan == "stop":
             self.get_logger().info('--- Received stop order ---')
-            self._countdown.cancel()
             self._publish_twist_msg(0.0, 0.0)
             self._scanning = False
             response.success = True
-            self._end_scan_pass()
 
         else:
             response.success = False
@@ -183,7 +187,7 @@ class SlamService(Node):
        
         self.get_logger().info('--- Saving out generated map ---')
         os.system("ros2 run nav2_map_server map_saver_cli -f $HOME/turtlebot3_ws/src/petsitter/petsitter_ros2/petsitter/petsitter_nav2_system/map/map_auto")
-        os.system("ros2 run $HOME/turtlebot3_ws/src/petsitter/petsitter_ros2/petsitter_slam_auto/petsitter_slam_auto/upload_map_firestore.py")
+        os.system("python $HOME/turtlebot3_ws/src/petsitter/petsitter_ros2/petsitter/petsitter_slam_auto/petsitter_slam_auto/upload_map_firestore.py")
 
 def main(args=None):
     """
