@@ -11,7 +11,7 @@ from rclpy.node import Node
 from rclpy.qos import ReliabilityPolicy, QoSProfile
 from geometry_msgs.msg import PoseWithCovarianceStamped
 
-class Publisher(Node):
+class InitialPosePublisher(Node):
     """
   	Nodo que utiliza un publisher para publicar la posicion inicial del robot en el topic initialpose
 
@@ -56,7 +56,7 @@ class Publisher(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    publisher = Publisher()
+    publisher = InitialPosePublisher()
     try:
         rclpy.spin_once(publisher)
     except KeyboardInterrupt:

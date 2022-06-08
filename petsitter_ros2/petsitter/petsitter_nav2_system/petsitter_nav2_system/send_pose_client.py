@@ -7,7 +7,7 @@ from rclpy.node import Node
 import sys
 from custom_interface.srv import NavMessage
 
-class ClientAsync(Node):
+class SendPoseClient(Node):
     """
     Cliente del servicio send_pose
 
@@ -51,7 +51,7 @@ def main(args=None):
     #inicializa la comunicacion ROS2
     rclpy.init(args=args)
     #declara el constructor del objeto cliente
-    client = ClientAsync()
+    client = SendPoseClient()
     #ejecuta el metodo de peticion de servicio
     client.send_request()
 

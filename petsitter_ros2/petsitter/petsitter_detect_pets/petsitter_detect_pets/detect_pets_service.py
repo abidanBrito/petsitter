@@ -50,7 +50,7 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 
-class Service(Node): 
+class DetectService(Node): 
     """
     Servicio que se encarga de analizar las imágenes que muestra el robot y cuando se encuentre con un perro o un gato, subirá la imagen a la base de datos
     indicando que tipo de animal es, y si se trata de un perro, también se indicará si se trata de un pastor alemán o no
@@ -294,7 +294,7 @@ class Service(Node):
 def main(args=None):
 
     rclpy.init(args=args)    
-    img_converter_object = Service()    
+    img_converter_object = DetectService()    
        
     try:
         print("Nueva imagen")

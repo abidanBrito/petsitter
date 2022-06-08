@@ -6,7 +6,7 @@ from custom_interface.srv import MyMoveMsg
 import rclpy
 from rclpy.node import Node
 
-class Service(Node):
+class MovementService(Node):
     def __init__(self):
         #constructor con el nombre del nodo
         super().__init__('movement_server') 
@@ -98,7 +98,7 @@ def main(args=None):
     # inicializa la comunicacion ROS2
     rclpy.init(args=args)
     # creamos el nodo
-    service = Service()
+    service = MovementService()
     try:
         #dejamos abierto el servicio
         rclpy.spin(service)
