@@ -12,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
         (os.path.join('share', package_name, 'config'), glob('config/*.pgm')),
@@ -28,7 +29,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'slam_server = petsitter_slam_auto.slam_server:main' 
+      	    'slam_server = petsitter_slam_auto.slam_server:main',
+            'upload_map_firestore = petsitter_slam_auto.upload_map_firestore:main' 
         ],
     },
 )
